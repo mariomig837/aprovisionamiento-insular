@@ -3,290 +3,416 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aprovisionamiento Constructivo Insular</title>
+<title>Adaptación Funcional de la Vivienda</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Materiales de construcción y proyectos bajo demanda para Canarias: gestión integral de compra a fábrica, transporte, despacho aduanero y entrega en obra.">
+<meta name="description" content="Adaptamos su vivienda para que pueda seguir viviendo en casa con seguridad y autonomía. Valoración gratuita a domicilio en Tenerife.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
 <style>
-/* Layout: bandas a todo el ancho con contenido centrado; un recorrido de pedido animado como pieza central */
+/* Layout: bandas a todo el ancho; herramientas interactivas como tarjetas de trabajo; tipografía de alta legibilidad pensada para personas mayores */
 :root{
-  --bg:#f5f3ee; --surface:#ffffff; --ink:#17211e; --muted:#56655f; --line:#dfe1da;
-  --brand:#0f4c47; --brand-ink:#0f4c47; --deep:#0f3d3a; --on-deep:#eef4f1; --on-deep-muted:#bfd3cc;
-  --accent:#d9902f; --on-accent:#241600; --accent-soft:#f3e2c4; --focus:#d9902f;
-  --shadow:0 10px 30px rgba(15,61,58,.10); --radius:16px;
-  --display:Georgia,"Times New Roman",serif; --body:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  --bg:#f7f6f2; --surface:#ffffff; --ink:#18232b; --muted:#4f5d63; --line:#dbe1e0;
+  --navy:#1d3557; --brand:#2a7f74; --brand-ink:#1f6b61; --accent:#e09f3e; --on-accent:#2b1a00; --soft:#e3f1ec; --warn:#c2552d; --warn-soft:#fbe9e2; --ok:#2a7f74;
+  --deep:#1d3557; --on-deep:#eef3f8; --on-deep-muted:#b9c8db;
+  --shadow:0 12px 32px rgba(29,53,87,.10); --radius:18px;
+  --display:"Literata",Georgia,serif; --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --fs:17px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0e1614; --surface:#15211e; --ink:#eaf1ee; --muted:#9fb2aa; --line:#26362f;
-  --brand:#7fcbbb; --brand-ink:#9ad8ca; --deep:#112e2a; --accent-soft:#33280f; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}}
+  --bg:#0f161c; --surface:#16212a; --ink:#e9eff3; --muted:#a3b2bb; --line:#27353f;
+  --navy:#a9c6ea; --brand:#5fbfae; --brand-ink:#7fd0c1; --soft:#16302c; --warn:#f08a62; --warn-soft:#3a2219; --deep:#14263d; --shadow:0 12px 32px rgba(0,0,0,.35); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0e1614; --surface:#15211e; --ink:#eaf1ee; --muted:#9fb2aa; --line:#26362f;
-  --brand:#7fcbbb; --brand-ink:#9ad8ca; --deep:#112e2a; --accent-soft:#33280f; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6}
-h1,h2,h3{font-family:var(--display);line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-section{padding-block:80px}
-.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
-h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:8px 0 14px}
-.lead{color:var(--muted);font-size:1.1rem;max-width:640px}
+  --bg:#0f161c; --surface:#16212a; --ink:#e9eff3; --muted:#a3b2bb; --line:#27353f;
+  --navy:#a9c6ea; --brand:#5fbfae; --brand-ink:#7fd0c1; --soft:#16302c; --warn:#f08a62; --warn-soft:#3a2219; --deep:#14263d; --shadow:0 12px 32px rgba(0,0,0,.35); color-scheme:dark}
+/* Modo lectura fácil: letra grande y alto contraste */
+:root.easy{--fs:21px; --muted:var(--ink); --line:#8a959b}
+:root.easy .btn,:root.easy .chip,:root.easy .tab{border-width:2px}
+:root.easy *{transition:none!important;animation:none!important}
 
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
-header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--brand-ink);line-height:1.1}
-.logo svg{flex:none}
-.logo .short{display:none}
-.nav nav{display:flex;gap:24px;align-items:center}
-.nav nav a{text-decoration:none;font-size:.95rem;color:var(--muted)}
-.nav nav a:hover{color:var(--ink)}
-.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;padding:12px 22px;border-radius:999px;text-decoration:none;transition:transform .15s}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:76px}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
+h2{font-size:clamp(1.7rem,3.8vw,2.4rem);margin:8px 0 12px;color:var(--navy)}
+.lead{color:var(--muted);font-size:1.08rem;max-width:660px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid transparent;cursor:pointer;font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none;transition:transform .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn.primary{background:var(--accent);color:var(--on-accent)}
-.btn.ghost{background:transparent;border:1.5px solid var(--brand);color:var(--brand-ink)}
-@media(max-width:820px){.nav nav a:not(.btn){display:none}.logo .full{display:none}.logo .short{display:inline}}
+.btn.ghost{background:transparent;border-color:var(--brand);color:var(--brand-ink)}
+.btn.small{padding:8px 14px;font-size:.88rem}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
-.hero{padding-block:72px 64px;background:radial-gradient(900px 480px at 85% -10%,var(--accent-soft) 0,transparent 60%),var(--bg)}
-.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-family:var(--display);font-weight:700;line-height:1.1;font-size:1rem}
+.nav nav{display:flex;gap:20px;align-items:center}
+.nav nav a.l{text-decoration:none;color:var(--muted);font-size:.92rem}
+.easybtn{font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;border:1.5px solid var(--navy);color:var(--navy);background:transparent;border-radius:999px;padding:7px 12px}
+.easybtn[aria-pressed=true]{background:var(--navy);color:var(--bg)}
+@media(max-width:900px){.nav nav a.l{display:none}}
+@media(max-width:560px){.logo span{display:none}.nav .btn.primary{display:none}}
+
+.hero{padding-block:64px 56px;background:radial-gradient(800px 420px at 90% 0%,color-mix(in srgb,var(--accent) 22%,transparent) 0,transparent 65%),radial-gradient(700px 400px at 0% 100%,var(--soft) 0,transparent 70%),var(--bg)}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
 .hero .grid>*{min-width:0}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--brand-ink);margin:12px 0 18px}
-.hero p{font-size:1.12rem;color:var(--muted);max-width:520px;margin-bottom:26px}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
-@media(max-width:900px){.hero .grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--navy);margin:10px 0 16px}
+.hero p{font-size:1.12rem;color:var(--muted);max-width:540px;margin-bottom:24px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:.92rem}
+.trust b{color:var(--ink)}
+@media(max-width:920px){.hero .grid{grid-template-columns:1fr}}
 
-.flow{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
-.flow h3{font-size:.95rem;font-family:var(--body);color:var(--muted);font-weight:600;margin-bottom:14px}
-.node{display:flex;align-items:center;gap:14px;padding:13px 15px;border-radius:14px;border:1px solid var(--line);transition:background .5s,border-color .5s}
-.node.on{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 9%,transparent)}
-.node b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--deep);color:var(--accent);flex:none}
-.node small{display:block;color:var(--muted)}
-.link{width:2px;height:14px;background:var(--line);margin-left:32px}
+/* antes / después */
+.ba{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--surface);aspect-ratio:4/3;max-width:100%;user-select:none}
+.ba svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:var(--accent);transform:translateX(-1.5px);pointer-events:none}
+.ba .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700}
+.ba .tagl,.ba .tagr{position:absolute;top:12px;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:700;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.ba .tagl{left:12px}.ba .tagr{right:12px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.bacap{font-size:.86rem;color:var(--muted);margin-top:10px}
 
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
-.fact{border-top:2px solid var(--brand);padding-top:12px}
-.fact strong{font-family:var(--display);font-size:2.1rem;color:var(--brand-ink);display:block;font-variant-numeric:tabular-nums}
-.fact span{color:var(--muted);font-size:.92rem}
-@media(max-width:760px){.facts{grid-template-columns:1fr 1fr}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
+.stat{border-top:3px solid var(--brand);padding-top:10px}
+.stat strong{display:block;font-family:var(--display);font-size:2rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.9rem}
+.src{font-size:.75rem;color:var(--muted);margin-top:10px}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
 
-.steps{display:grid;grid-template-columns:300px 1fr;gap:28px;margin-top:32px}
-.steps>*{min-width:0}
-.tabs{display:flex;flex-direction:column;gap:10px}
-.tab{text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 16px;cursor:pointer;display:flex;gap:12px;align-items:center}
-.tab span{width:30px;height:30px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-weight:700;flex:none}
-.tab[aria-selected=true]{border-color:var(--brand);box-shadow:var(--shadow)}
-.tab[aria-selected=true] span{background:var(--deep);color:var(--accent)}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;min-height:230px}
-.panel h3{font-size:1.5rem;margin-bottom:10px;color:var(--brand-ink)}
-.panel ul{margin:14px 0 0 18px;color:var(--muted)}
-@media(max-width:860px){.steps{grid-template-columns:1fr}.tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}.tab{min-width:180px}}
+/* test */
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:24px;margin-top:28px}
+.rooms{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.room{font:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-weight:700}
+.room[aria-selected=true]{border-color:var(--brand);background:var(--soft)}
+.room .dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.room .dot.r1{background:var(--accent)}.room .dot.r2{background:var(--warn)}
+.testgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+.testgrid>*{min-width:0}
+@media(max-width:860px){.testgrid{grid-template-columns:1fr}}
+.q{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;background:var(--bg)}
+.q input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--warn)}
+.q:has(input:checked){border-color:var(--warn);background:var(--warn-soft)}
+.res{background:var(--bg);border-radius:16px;padding:18px;border:1px solid var(--line)}
+.meter{height:12px;border-radius:999px;background:var(--line);overflow:hidden;margin:8px 0 6px}
+.meter i{display:block;height:100%;width:0;background:var(--brand);transition:width .4s,background .4s}
+.res ul{margin:10px 0 14px 18px}
+.level{font-weight:700}
 
-.sectors{background:var(--deep);color:var(--on-deep)}
-.sectors .eyebrow{color:var(--accent)} .sectors h2{color:var(--on-deep)} .sectors .lead{color:var(--on-deep-muted)}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
-.card{border:1px solid color-mix(in srgb,var(--on-deep) 18%,transparent);border-radius:var(--radius);padding:22px;transition:background .25s}
-.card:hover{background:color-mix(in srgb,var(--on-deep) 7%,transparent)}
-.card svg{color:var(--accent)}
-.card h3{font-size:1.2rem;margin:10px 0 8px;color:var(--on-deep)}
-.card p{color:var(--on-deep-muted);font-size:.95rem}
-@media(max-width:980px){.cards{grid-template-columns:1fr 1fr}} @media(max-width:560px){.cards{grid-template-columns:1fr}}
+/* calculadora */
+.calcgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+.calcgrid>*{min-width:0}
+@media(max-width:860px){.calcgrid{grid-template-columns:1fr}}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.items{grid-template-columns:1fr}}
+.item{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;background:var(--bg)}
+.item input{width:20px;height:20px;flex:none;margin-top:3px;accent-color:var(--brand)}
+.item:has(input:checked){border-color:var(--brand);background:var(--soft)}
+.item small{display:block;color:var(--muted);font-variant-numeric:tabular-nums}
+.total{position:sticky;top:90px;background:var(--deep);color:var(--on-deep);border-radius:18px;padding:22px}
+.total .big{font-family:var(--display);font-size:2rem;font-variant-numeric:tabular-nums;margin:6px 0}
+.total p{color:var(--on-deep-muted);font-size:.9rem}
+.total ul{margin:10px 0 0 18px;color:var(--on-deep-muted);font-size:.9rem}
 
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
-.chip{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 16px;border-radius:999px}
-.chip[aria-pressed=true]{background:var(--deep);color:var(--accent);border-color:var(--deep)}
-.matbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;color:var(--muted)}
+/* proceso */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--bg);margin-bottom:10px}
+.step h3{font-size:1.05rem;color:var(--navy);margin-bottom:6px}
+.step p{font-size:.92rem;color:var(--muted)}
+@media(max-width:980px){.steps{grid-template-columns:1fr 1fr}} @media(max-width:520px){.steps{grid-template-columns:1fr}}
 
-.request{background:color-mix(in srgb,var(--accent-soft) 60%,var(--bg))}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.band{background:var(--deep);color:var(--on-deep)}
+.band h2{color:var(--on-deep)} .band .lead{color:var(--on-deep-muted)} .band .eyebrow{color:var(--accent)}
+.aids{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.aid{border:1px solid color-mix(in srgb,var(--on-deep) 20%,transparent);border-radius:16px;padding:20px}
+.aid h3{font-size:1.1rem;margin-bottom:8px;color:var(--on-deep)}
+.aid p{color:var(--on-deep-muted);font-size:.94rem}
+@media(max-width:860px){.aids{grid-template-columns:1fr}}
+
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .formgrid>*{min-width:0}
 @media(max-width:900px){.formgrid{grid-template-columns:1fr}}
 form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);display:grid;gap:14px}
-label{font-size:.85rem;font-weight:600;color:var(--muted);display:grid;gap:6px}
-input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
-input:focus,select:focus,textarea:focus,.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+label{font-size:.9rem;font-weight:700;color:var(--muted);display:grid;gap:6px}
+input[type=text],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.row{grid-template-columns:1fr}}
-#result{background:color-mix(in srgb,var(--brand) 10%,var(--surface));border:1px solid var(--brand);border-radius:14px;padding:14px;font-size:.92rem;white-space:pre-wrap}
-.note{font-size:.8rem;color:var(--muted)}
-
+#result{background:var(--soft);border:1px solid var(--brand);border-radius:14px;padding:14px;font-size:.92rem;white-space:pre-wrap}
+.note{font-size:.82rem;color:var(--muted)}
 details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:12px}
-summary{cursor:pointer;font-weight:600}
-details p{color:var(--muted);margin-top:10px}
-
-footer{background:var(--deep);color:var(--on-deep-muted);padding-block:36px;font-size:.9rem}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);margin-top:8px}
+footer{background:var(--deep);color:var(--on-deep-muted);padding-block:34px;font-size:.92rem}
 footer strong{color:var(--on-deep)}
-footer a{color:var(--accent)}
-.docs{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
-  <a class="logo" href="#inicio" aria-label="Aprovisionamiento Constructivo Insular, inicio">
-    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--deep)"/><path d="M7 22h18M10 22v-7l6-4 6 4v7" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round"/></svg>
-    <span class="full">Aprovisionamiento<br>Constructivo Insular</span><span class="short">A.C. Insular</span>
+  <a class="logo" href="#inicio" aria-label="Adaptación Funcional de la Vivienda, inicio">
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--navy)"/><path d="M8 17l9-7 9 7M11 15.5V25h12v-9.5" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linejoin="round"/><circle cx="17" cy="19" r="1.8" fill="var(--accent)"/><path d="M17 21v4" stroke="var(--accent)" stroke-width="2"/></svg>
+    <span>Adaptación Funcional<br>de la Vivienda</span>
   </a>
   <nav>
-    <a href="#como">Cómo funciona</a><a href="#sectores">Sectores</a><a href="#materiales">Materiales</a><a href="#faq">Preguntas</a>
-    <a class="btn primary" href="#solicitud">Solicitar propuesta</a>
+    <a class="l" href="#test">Test de su casa</a><a class="l" href="#calculadora">Calculadora</a><a class="l" href="#ayudas">Ayudas</a><a class="l" href="#preguntas">Preguntas</a>
+    <button class="easybtn" id="easy" aria-pressed="false" title="Aumenta el tamaño de letra y el contraste">Aa Lectura fácil</button>
+    <a class="btn primary small" href="#valoracion">Valoración gratuita</a>
   </nav>
 </div></header>
 
 <main id="inicio">
 <section class="hero"><div class="wrap grid">
   <div>
-    <span class="eyebrow">Construcción bajo demanda · Islas Canarias</span>
-    <h1>Materiales y soluciones constructivas, puestos en su obra en cualquier isla.</h1>
-    <p>Gestionamos por usted la compra directa a fábrica, el transporte marítimo, el despacho aduanero y la entrega. Un único interlocutor, precio cerrado y plazos comprometidos.</p>
-    <div class="cta"><a class="btn primary" href="#solicitud">Solicitar propuesta</a><a class="btn ghost" href="#como">Ver el proceso</a></div>
+    <span class="eyebrow">Tenerife · Personas mayores y con movilidad reducida</span>
+    <h1>Siga viviendo en su casa, con seguridad y autonomía.</h1>
+    <p>Adaptamos el baño, los accesos y las escaleras de su vivienda. Le visitamos sin coste, le explicamos qué ayudas puede pedir y nos ocupamos de la obra de principio a fin.</p>
+    <div class="cta"><a class="btn primary" href="#valoracion">Pedir valoración gratuita</a><a class="btn ghost" href="#test">Hacer el test de mi casa</a></div>
+    <div class="trust"><span><b>Visita gratuita</b> a domicilio</span><span><b>1 a 5 días</b> de obra</span><span><b>Precio cerrado</b></span></div>
   </div>
-  <aside class="flow" aria-label="Recorrido de un pedido">
-    <h3>Recorrido de su pedido</h3>
-    <div class="node on"><b>1</b><div><strong>Definición de la necesidad</strong><small>Materiales, proyecto o ambos</small></div></div><div class="link"></div>
-    <div class="node"><b>2</b><div><strong>Consulta a fabricantes</strong><small>Comparativa de precio, plazo y certificación</small></div></div><div class="link"></div>
-    <div class="node"><b>3</b><div><strong>Transporte e importación</strong><small>Flete, despacho aduanero e impuestos</small></div></div><div class="link"></div>
-    <div class="node"><b>4</b><div><strong>Entrega en obra</strong><small>En cualquiera de las ocho islas</small></div></div>
-  </aside>
+  <div>
+    <div class="ba" id="ba" style="--pos:50%">
+      <svg viewBox="0 0 400 300" aria-hidden="true" class="before">
+        <rect width="400" height="300" fill="#e9e4da"/><rect y="230" width="400" height="70" fill="#cfc6b6"/>
+        <path d="M0 230h400" stroke="#b5aa96" stroke-width="2"/>
+        <g opacity=".5" stroke="#fff" stroke-width="2"><path d="M30 250l40 30M120 245l50 35M220 250l45 30M310 248l50 32"/></g>
+        <rect x="40" y="150" width="230" height="85" rx="18" fill="#fff" stroke="#9aa3a8" stroke-width="3"/>
+        <rect x="52" y="162" width="206" height="40" rx="12" fill="#d9eef3"/>
+        <path d="M240 60v70a10 10 0 0 1-10 10" stroke="#8c969b" stroke-width="5" fill="none"/>
+        <circle cx="240" cy="58" r="10" fill="#8c969b"/>
+        <rect x="300" y="110" width="70" height="120" rx="6" fill="#d8cfbf"/>
+        <text x="16" y="270" font-family="sans-serif" font-size="13" fill="#7a4a35" font-weight="700">Borde alto</text><text x="16" y="287" font-family="sans-serif" font-size="13" fill="#7a4a35" font-weight="700">Suelo resbaladizo</text>
+      </svg>
+      <svg viewBox="0 0 400 300" aria-hidden="true" class="after">
+        <rect width="400" height="300" fill="#e7f0ec"/><rect y="230" width="400" height="70" fill="#9fb9ae"/>
+        <g fill="#8aa89b"><circle cx="20" cy="250" r="2"/><circle cx="60" cy="270" r="2"/><circle cx="100" cy="252" r="2"/><circle cx="140" cy="276" r="2"/><circle cx="180" cy="258" r="2"/><circle cx="220" cy="272" r="2"/><circle cx="260" cy="254" r="2"/><circle cx="300" cy="276" r="2"/><circle cx="340" cy="256" r="2"/><circle cx="380" cy="270" r="2"/></g>
+        <rect x="40" y="226" width="230" height="8" rx="3" fill="#fff" stroke="#6f8f83" stroke-width="2"/>
+        <rect x="60" y="70" width="4" height="156" fill="#b8d4e0" opacity=".8"/><rect x="60" y="70" width="90" height="156" fill="#cfe6ee" opacity=".35"/>
+        <path d="M240 60v40" stroke="#5e7f74" stroke-width="5"/><circle cx="240" cy="58" r="10" fill="#5e7f74"/>
+        <rect x="200" y="96" width="60" height="16" rx="5" fill="#2a7f74"/>
+        <rect x="90" y="150" width="140" height="9" rx="4.5" fill="#e09f3e"/>
+        <rect x="270" y="110" width="9" height="90" rx="4.5" fill="#e09f3e"/>
+        <rect x="160" y="170" width="70" height="12" rx="4" fill="#fff" stroke="#6f8f83" stroke-width="2"/><path d="M168 182v30M222 182v30" stroke="#6f8f83" stroke-width="3"/>
+        <rect x="300" y="110" width="70" height="120" rx="6" fill="#c9dcd3"/>
+        <text x="384" y="270" text-anchor="end" font-family="sans-serif" font-size="13" fill="#1d3557" font-weight="700">Ducha a ras de suelo</text><text x="384" y="287" text-anchor="end" font-family="sans-serif" font-size="13" fill="#1d3557" font-weight="700">Barras y asiento</text>
+      </svg>
+      <span class="handle"></span><span class="tagl">Antes</span><span class="tagr">Después</span>
+      <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Deslice para comparar el baño antes y después de la adaptación">
+    </div>
+    <p class="bacap">Deslice para comparar: sustituir la bañera por una ducha a ras de suelo con barras de apoyo y asiento abatible.</p>
+  </div>
 </div>
-<div class="wrap"><div class="facts">
-  <div class="fact"><strong>8</strong><span>islas con servicio de entrega</span></div>
-  <div class="fact"><strong>1</strong><span>interlocutor para todo el pedido</span></div>
-  <div class="fact"><strong>4</strong><span>sectores de especialización</span></div>
-  <div class="fact"><strong>0&nbsp;€</strong><span>en stock inmovilizado: se fabrica a demanda</span></div>
-</div></div>
+<div class="wrap"><div class="stats">
+  <div class="stat"><strong>18 %</strong><span>de la población canaria tiene 65 años o más</span></div>
+  <div class="stat"><strong>19.607</strong><span>plazas de residencia que faltan en Canarias</span></div>
+  <div class="stat"><strong>0 €</strong><span>cuesta la visita de valoración</span></div>
+  <div class="stat"><strong>1–5 días</strong><span>dura una adaptación de baño habitual</span></div>
+</div>
+<p class="src">Fuentes: RTVC con datos de FEDEA (enero de 2025) y estimación de plazas residenciales (enero de 2026).</p></div>
 </section>
 
-<section id="como"><div class="wrap">
-  <span class="eyebrow">Proceso</span>
-  <h2>Cuatro fases, sin imprevistos</h2>
-  <p class="lead">Seleccione una fase para ver qué hacemos nosotros y qué necesitamos de usted.</p>
+<section id="test"><div class="wrap">
+  <span class="eyebrow">Test de la vivienda</span>
+  <h2>¿Es segura su casa? Compruébelo en dos minutos</h2>
+  <p class="lead">Recorra cada estancia y marque lo que ocurre en su vivienda. Le mostraremos el nivel de riesgo y las adaptaciones que recomendamos.</p>
+  <div class="tool">
+    <div class="rooms" role="tablist" id="rooms"></div>
+    <div class="testgrid">
+      <div id="questions" role="tabpanel"></div>
+      <div class="res" aria-live="polite">
+        <div class="eyebrow">Resultado de toda la vivienda</div>
+        <div class="meter"><i id="meter"></i></div>
+        <p><span class="level" id="level"></span> <span id="levelTxt"></span></p>
+        <div id="recs"></div>
+        <button class="btn primary small" type="button" id="toCalc" hidden>Calcular el coste de estas adaptaciones</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="calculadora" style="background:color-mix(in srgb,var(--soft) 60%,var(--bg))"><div class="wrap">
+  <span class="eyebrow">Calculadora orientativa</span>
+  <h2>¿Cuánto puede costar?</h2>
+  <p class="lead">Seleccione las adaptaciones que le interesan y vea un rango de precio aproximado. El precio exacto y cerrado se lo damos tras la visita gratuita.</p>
+  <div class="tool calcgrid">
+    <div class="items" id="items"></div>
+    <aside class="total" aria-live="polite">
+      <div class="eyebrow" style="color:var(--accent)">Estimación</div>
+      <div class="big" id="total">0 €</div>
+      <p id="count">Ninguna adaptación seleccionada.</p>
+      <ul id="sel"></ul>
+      <p style="margin-top:14px">Importes orientativos de suministro e instalación. Muchas de estas actuaciones pueden acogerse a ayudas públicas: se lo explicamos en la visita.</p>
+      <a class="btn primary small" href="#valoracion" style="margin-top:14px">Pedir precio cerrado</a>
+    </aside>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="eyebrow">Cómo trabajamos</span>
+  <h2>De la primera llamada a la casa adaptada</h2>
   <div class="steps">
-    <div class="tabs" role="tablist" id="tabs"></div>
-    <div class="panel" id="panel" role="tabpanel"></div>
+    <div class="step"><b>1</b><h3>Contacto</h3><p>Usted, su familia o los servicios sociales nos llaman o rellenan el formulario.</p></div>
+    <div class="step"><b>2</b><h3>Visita gratuita</h3><p>Revisamos la vivienda con usted y le entregamos un informe de riesgos.</p></div>
+    <div class="step"><b>3</b><h3>Propuesta y ayudas</h3><p>Precio cerrado y orientación sobre las ayudas que puede solicitar. Le ayudamos a tramitarlas.</p></div>
+    <div class="step"><b>4</b><h3>Obra limpia y rápida</h3><p>Instaladores profesionales, con la casa habitada y el mínimo de molestias.</p></div>
+    <div class="step"><b>5</b><h3>Seguimiento</h3><p>Le enseñamos a usar cada elemento y volvemos a los tres meses.</p></div>
   </div>
 </div></section>
 
-<section class="sectors" id="sectores"><div class="wrap">
-  <span class="eyebrow">Sectores prioritarios</span>
-  <h2>Orientado a las necesidades de Canarias</h2>
-  <p class="lead">Priorizamos los proyectos de mayor impacto social, donde el plazo y el coste de los materiales resultan determinantes.</p>
-  <div class="cards">
-    <div class="card"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><h3>Vivienda asequible</h3><p>Sistemas de construcción industrializada y materiales para promoción y rehabilitación de vivienda protegida.</p></div>
-    <div class="card"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="8" width="8" height="12"/><rect x="13" y="8" width="8" height="12"/><path d="M3 8l4-4h10l4 4"/></svg><h3>Acogida humanitaria</h3><p>Módulos habitables y equipamiento para dispositivos de acogida y alojamiento temporal, de montaje rápido.</p></div>
-    <div class="card"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><h3>Infraestructura educativa</h3><p>Aularios modulares, ampliaciones y reformas de centros con plazos ajustados al calendario escolar.</p></div>
-    <div class="card"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg><h3>Infraestructura sanitaria</h3><p>Consultorios locales, centros de salud y reformas con materiales certificados para uso sanitario.</p></div>
+<section class="band" id="ayudas"><div class="wrap">
+  <span class="eyebrow">Ayudas públicas</span>
+  <h2>No tiene que hacer los trámites solo</h2>
+  <p class="lead">Existen programas públicos para adaptar la vivienda de personas mayores y con discapacidad. En la visita revisamos su caso y le orientamos.</p>
+  <div class="aids">
+    <div class="aid"><h3>Rehabilitación y accesibilidad de vivienda</h3><p>Programas insulares y municipales de rehabilitación que incluyen la eliminación de barreras. Se solicitan en su ayuntamiento.</p></div>
+    <div class="aid"><h3>Dependencia y permanencia en el hogar</h3><p>Apoyos para personas mayores y en situación de dependencia que quieren seguir viviendo en su domicilio.</p></div>
+    <div class="aid"><h3>Tarifa social</h3><p>Condiciones especiales y facilidades de pago para personas con ingresos reducidos.</p></div>
   </div>
+  <p class="src" style="color:var(--on-deep-muted)">La disponibilidad, los requisitos y los plazos dependen de cada convocatoria y municipio.</p>
 </div></section>
 
-<section id="materiales"><div class="wrap">
-  <span class="eyebrow">Catálogo bajo demanda</span>
-  <h2>Acceso directo a fabricantes</h2>
-  <p class="lead">No mantenemos almacén: seleccionamos el fabricante adecuado para cada pedido y negociamos en su nombre.</p>
-  <div class="chips" id="chips"></div>
-  <div class="matbox" id="matbox"></div>
-</div></section>
-
-<section class="request" id="solicitud"><div class="wrap formgrid">
+<section id="valoracion"><div class="wrap formgrid">
   <div>
-    <span class="eyebrow">Solicitud de propuesta</span>
-    <h2>Cuéntenos qué necesita</h2>
-    <p class="lead">Complete el formulario y le enviaremos una propuesta inicial sin compromiso.</p>
-    <ul style="margin:20px 0 0 18px;color:var(--muted)">
-      <li>Propuesta orientativa en pocos días hábiles</li>
-      <li>Precio cerrado con entrega en su isla</li>
-      <li>Documentación técnica y certificados incluidos</li>
+    <span class="eyebrow">Valoración gratuita</span>
+    <h2>Pida su visita sin compromiso</h2>
+    <p class="lead">Déjenos sus datos y le llamaremos para acordar el día de la visita. Si ha hecho el test o la calculadora, añadiremos sus resultados.</p>
+    <ul style="margin:18px 0 0 18px;color:var(--muted)">
+      <li>Visita en su domicilio, sin coste</li>
+      <li>Informe de riesgos de la vivienda</li>
+      <li>Orientación sobre ayudas</li>
     </ul>
   </div>
   <form id="form" novalidate>
     <div class="row">
-      <label for="f-nombre">Nombre o entidad<input id="f-nombre" name="nombre" required autocomplete="organization" placeholder="Ej.: Construcciones Atlántico S.L."></label>
-      <label for="f-contacto">Correo electrónico o teléfono<input id="f-contacto" name="contacto" required placeholder="Ej.: compras@empresa.es"></label>
+      <label for="f-nombre">Nombre<input type="text" id="f-nombre" name="nombre" autocomplete="name" placeholder="Ej.: Carmen Pérez"></label>
+      <label for="f-tel">Teléfono<input type="text" id="f-tel" name="telefono" autocomplete="tel" inputmode="tel" placeholder="Ej.: 600 000 000"></label>
     </div>
     <div class="row">
-      <label for="f-isla">Isla de entrega
-        <select id="f-isla" name="isla"><option>Tenerife</option><option>Gran Canaria</option><option>La Palma</option><option>La Gomera</option><option>El Hierro</option><option>Lanzarote</option><option>Fuerteventura</option><option>La Graciosa</option></select></label>
-      <label for="f-tipo">Tipo de solicitud
-        <select id="f-tipo" name="tipo"><option>Suministro de materiales</option><option>Proyecto completo</option><option>Materiales y proyecto</option></select></label>
+      <label for="f-mun">Municipio<input type="text" id="f-mun" name="municipio" placeholder="Ej.: La Laguna"></label>
+      <label for="f-quien">La solicitud es para
+        <select id="f-quien" name="quien"><option>Mí</option><option>Un familiar</option><option>Una persona usuaria de servicios sociales</option></select></label>
     </div>
-    <div class="row">
-      <label for="f-sector">Sector
-        <select id="f-sector" name="sector"><option>Vivienda</option><option>Acogida humanitaria</option><option>Educación</option><option>Sanidad</option><option>Otro</option></select></label>
-      <label for="f-plazo">Plazo deseado
-        <select id="f-plazo" name="plazo"><option>Lo antes posible</option><option>1 a 3 meses</option><option>3 a 6 meses</option><option>Sin plazo definido</option></select></label>
-    </div>
-    <label for="f-desc">Descripción de la necesidad<textarea id="f-desc" name="desc" rows="4">Aulario modular de 60 m² con cubierta ligera, carpintería de aluminio y climatización.</textarea></label>
+    <label for="f-hora">Mejor momento para llamar
+      <select id="f-hora" name="hora"><option>Por la mañana</option><option>Por la tarde</option><option>Indiferente</option></select></label>
+    <label for="f-nota">Comentarios<textarea id="f-nota" name="nota" rows="3" placeholder="Ej.: Mi madre tiene dificultad para entrar en la bañera."></textarea></label>
     <button class="btn primary" type="submit">Preparar solicitud</button>
     <div id="result" role="status" hidden></div>
-    <button class="btn ghost" type="button" id="copy" hidden>Copiar solicitud</button>
-    <p class="note">Versión de demostración: la solicitud se prepara en su navegador para que la copie y la envíe al correo de contacto del proyecto. No se transmite ningún dato.</p>
+    <button class="btn ghost small" type="button" id="copy" hidden>Copiar solicitud</button>
+    <p class="note">Versión de demostración: la solicitud se prepara en su navegador y no se envía ningún dato.</p>
   </form>
 </div></section>
 
-<section id="faq"><div class="wrap" style="max-width:820px">
+<section id="preguntas" style="padding-top:0"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Preguntas frecuentes</span>
-  <h2>Información práctica</h2>
-  <details><summary>¿El precio incluye transporte e impuestos?</summary><p>Sí. La propuesta incluye flete, despacho aduanero y los tributos canarios aplicables (IGIC y, en su caso, AIEM), con el desglose visible antes de la aceptación.</p></details>
-  <details><summary>¿Cuál es el plazo de entrega?</summary><p>Depende del fabricante y del origen de la mercancía. Indicamos un plazo estimado en la propuesta e informamos de cada hito del envío.</p></details>
-  <details><summary>¿Con qué tipo de clientes trabajan?</summary><p>Particulares, empresas constructoras, promotores, administraciones públicas y entidades del tercer sector.</p></details>
-  <details><summary>¿Pueden encargarse también del proyecto técnico?</summary><p>Sí. Colaboramos con profesionales colegiados para que el proyecto y el suministro estén coordinados desde el inicio.</p></details>
-  <details><summary>¿Cuáles son las condiciones de pago?</summary><p>Un anticipo a la aceptación de la propuesta y el resto conforme a los hitos de entrega, de modo que cada pedido queda garantizado.</p></details>
+  <h2>Resolvemos sus dudas</h2>
+  <details><summary>¿La visita de valoración tiene algún coste?</summary><p>No. La visita y el informe de riesgos son gratuitos y no le obligan a contratar nada.</p></details>
+  <details><summary>¿Cuánto tiempo estaré sin poder usar el baño?</summary><p>Una sustitución de bañera por ducha suele terminarse en uno a tres días. Le indicamos el plazo exacto antes de empezar.</p></details>
+  <details><summary>¿Me ayudan a pedir las ayudas?</summary><p>Sí. Revisamos qué ayudas encajan con su situación y le acompañamos en la solicitud.</p></details>
+  <details><summary>¿Trabajan en toda la isla?</summary><p>Sí, en todos los municipios de Tenerife, incluidas las zonas rurales.</p></details>
+  <details><summary>¿Quién realiza la obra?</summary><p>Instaladores profesionales colaboradores, seleccionados y supervisados por nuestro equipo, con seguro de responsabilidad civil.</p></details>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <strong>Aprovisionamiento Constructivo Insular</strong> · Santa Cruz de Tenerife · Islas Canarias<br>
-  Correo de contacto: pendiente de alta · Versión de presentación, noviembre de 2026.
+  <strong>Proyecto de Adaptación Funcional de la Vivienda</strong> · Empresa de economía social en constitución · Tenerife, Islas Canarias<br>
+  Teléfono y correo de contacto: pendientes de alta · Versión de presentación, noviembre de 2026.
 </div></footer>
 
 <script>
-const steps=[
- {t:"Solicitud",h:"Definición de la necesidad",p:"Usted nos indica qué necesita: un suministro concreto, un proyecto completo o ambas cosas.",l:["Formulario de dos minutos","Planos y mediciones pueden aportarse después","Sin compromiso"]},
- {t:"Licitación a fábricas",h:"Consulta a fabricantes",p:"Solicitamos oferta a varios fabricantes, comparamos precio, plazo y certificaciones y le proponemos la opción más adecuada.",l:["Comparativa transparente","Marcado CE y certificados verificados","Propuesta con precio cerrado"]},
- {t:"Logística",h:"Transporte y despacho aduanero",p:"Coordinamos el transporte marítimo y los trámites de importación y tributación para que usted no tenga que hacerlo.",l:["Consolidación de cargas para reducir el flete","Despacho aduanero y tributos canarios","Seguimiento del envío"]},
- {t:"Entrega",h:"Entrega en obra",p:"El material llega a pie de obra en su isla. Si ha contratado proyecto, le acompañamos hasta la recepción final.",l:["Entrega en cualquier isla","Servicio posventa y garantía","Un único contacto para incidencias"]}
+/* ---------- Lectura fácil ---------- */
+const root=document.documentElement, easy=document.getElementById('easy');
+function setEasy(on){root.classList.toggle('easy',on);easy.setAttribute('aria-pressed',on);try{localStorage.setItem('afv-easy',on?'1':'0')}catch(e){}}
+try{if(localStorage.getItem('afv-easy')==='1')setEasy(true)}catch(e){}
+easy.onclick=()=>setEasy(!root.classList.contains('easy'));
+
+/* ---------- Antes / después ---------- */
+const ba=document.getElementById('ba'),baR=document.getElementById('baRange');
+baR.addEventListener('input',()=>ba.style.setProperty('--pos',baR.value+'%'));
+
+/* ---------- Catálogo para la calculadora ---------- */
+const catalog=[
+ {id:'ducha',n:'Cambiar bañera por ducha a ras de suelo',min:2500,max:4500},
+ {id:'barras',n:'Barras de apoyo (baño y aseo)',min:250,max:600},
+ {id:'asiento',n:'Asiento de ducha abatible',min:150,max:350},
+ {id:'grifo',n:'Grifería termostática',min:200,max:450},
+ {id:'suelo',n:'Suelo antideslizante en el baño',min:400,max:1200},
+ {id:'rampa',n:'Rampa de acceso',min:600,max:3000},
+ {id:'pasamanos',n:'Pasamanos en pasillo o escalera',min:200,max:800},
+ {id:'puerta',n:'Ampliar una puerta',min:500,max:1200},
+ {id:'salva',n:'Salvaescaleras de silla',min:3500,max:7000},
+ {id:'luz',n:'Iluminación nocturna con sensor',min:150,max:500},
+ {id:'cama',n:'Barra de transferencia junto a la cama',min:150,max:400},
+ {id:'cocina',n:'Ajuste de alturas en la cocina',min:600,max:2500}
 ];
-const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
-function showStep(i){
-  [...tabs.children].forEach((b,k)=>b.setAttribute('aria-selected',k===i));
-  const s=steps[i];
-  panel.innerHTML='<h3>'+s.h+'</h3><p>'+s.p+'</p><ul>'+s.l.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+const eur=v=>String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
+
+/* ---------- Test de la vivienda ---------- */
+const rooms=[
+ {n:'Entrada',ic:'M4 20V9l8-5 8 5v11M10 20v-6h4v6',q:[
+   ['Hay escalones para entrar en casa','rampa'],['La puerta de entrada es estrecha o pesada','puerta'],['El acceso está mal iluminado por la noche','luz']]},
+ {n:'Baño',ic:'M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V5a2 2 0 0 1 4 0',q:[
+   ['Hay que pasar por encima del borde de una bañera','ducha'],['No hay barras donde agarrarse','barras'],['No hay donde sentarse al ducharse','asiento'],['El suelo resbala cuando está mojado','suelo'],['Cuesta regular la temperatura del agua','grifo']]},
+ {n:'Dormitorio',ic:'M3 18v-6h18v6M3 12V7h7v5M3 18v2M21 18v2',q:[
+   ['Cuesta levantarse o acostarse','cama'],['Hay que caminar a oscuras para ir al baño de noche','luz']]},
+ {n:'Escaleras y pasillos',ic:'M4 20h4v-4h4v-4h4V8h4',q:[
+   ['Hay escaleras dentro de la vivienda que cuestan subir','salva'],['No hay pasamanos en escaleras o pasillos','pasamanos'],['Hay alfombras o desniveles con los que se tropieza','suelo']]},
+ {n:'Cocina',ic:'M5 4v16M5 10h4V4M15 4v16M15 4c3 2 3 6 0 8',q:[
+   ['Los armarios o la encimera están demasiado altos o bajos','cocina']]}
+];
+const answers={};let cur=0;
+const roomsEl=document.getElementById('rooms'),qEl=document.getElementById('questions');
+rooms.forEach((r,i)=>{const b=document.createElement('button');b.type='button';b.className='room';b.setAttribute('role','tab');
+ b.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="'+r.ic+'"/></svg>'+r.n+'<span class="dot"></span>';
+ b.onclick=()=>showRoom(i);roomsEl.appendChild(b)});
+function showRoom(i){cur=i;[...roomsEl.children].forEach((b,k)=>b.setAttribute('aria-selected',k===i));
+ const r=rooms[i];qEl.innerHTML='<h3 style="color:var(--navy);margin-bottom:12px">'+r.n+'</h3>'+r.q.map((q,k)=>{const key=i+'-'+k;
+  return '<label class="q"><input type="checkbox" data-k="'+key+'" '+(answers[key]?'checked':'')+'><span>'+q[0]+'</span></label>'}).join('')+
+  (i<rooms.length-1?'<button type="button" class="btn ghost small" id="next">Siguiente estancia →</button>':'');
+ qEl.querySelectorAll('input').forEach(c=>c.onchange=()=>{answers[c.dataset.k]=c.checked;update()});
+ const nx=document.getElementById('next');if(nx)nx.onclick=()=>showRoom(i+1);}
+function update(){
+ const recs=new Set();let total=0,marked=0;
+ rooms.forEach((r,i)=>{let m=0;r.q.forEach((q,k)=>{total++;if(answers[i+'-'+k]){m++;marked++;recs.add(q[1])}});
+  const dot=roomsEl.children[i].querySelector('.dot');dot.className='dot'+(m===0?'':(m/r.q.length>.5||m>=2?' r2':' r1'))});
+ const pct=Math.round(marked/total*100),meter=document.getElementById('meter'),lv=document.getElementById('level'),lt=document.getElementById('levelTxt');
+ meter.style.width=Math.max(pct,4)+'%';
+ if(marked===0){meter.style.background='var(--brand)';lv.textContent='Sin riesgos marcados.';lt.textContent='Marque las situaciones que se dan en su vivienda.'}
+ else if(marked<=3){meter.style.background='var(--accent)';lv.textContent='Riesgo moderado.';lt.textContent='Con pocas adaptaciones su vivienda puede ser mucho más segura.'}
+ else{meter.style.background='var(--warn)';lv.textContent='Riesgo elevado.';lt.textContent='Le recomendamos una valoración en su domicilio.'}
+ const list=[...recs].map(id=>catalog.find(c=>c.id===id));
+ document.getElementById('recs').innerHTML=list.length?'<strong>Adaptaciones recomendadas</strong><ul>'+list.map(c=>'<li>'+c.n+'</li>').join('')+'</ul>':'';
+ const tc=document.getElementById('toCalc');tc.hidden=!list.length;tc.onclick=()=>{list.forEach(c=>{const el=document.getElementById('c-'+c.id);if(el)el.checked=true});calc();document.getElementById('calculadora').scrollIntoView()};
 }
-steps.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.innerHTML='<span>'+(i+1)+'</span>'+s.t;b.onclick=()=>showStep(i);tabs.appendChild(b)});
-showStep(0);
+/* ejemplo inicial para que la herramienta muestre cómo funciona */
+answers['1-0']=true;answers['1-1']=true;
+showRoom(1);update();
 
-const mats={
- "Estructura y obra gruesa":"Cemento, acero corrugado, bloques, forjados, prefabricados de hormigón y sistemas de construcción industrializada.",
- "Cerramientos":"Carpintería de aluminio y PVC, vidrio, cubiertas, paneles sándwich y fachadas ventiladas.",
- "Acabados":"Pavimentos y revestimientos cerámicos, pinturas, placa de yeso laminado, falsos techos, puertas y herrajes.",
- "Instalaciones":"Fontanería, saneamiento, electricidad, climatización e iluminación LED.",
- "Eficiencia energética":"Aislamiento térmico, energía solar fotovoltaica y aerotermia.",
- "Módulos y prefabricados":"Módulos habitables, aularios, consultorios y alojamiento temporal listos para montar.",
- "Urbanización":"Adoquín, bordillos, tuberías, mobiliario urbano y señalización."
-};
-const chips=document.getElementById('chips'),box=document.getElementById('matbox');
-Object.keys(mats).forEach((k,i)=>{const c=document.createElement('button');c.type='button';c.className='chip';c.textContent=k;c.setAttribute('aria-pressed',i===0);
- c.onclick=()=>{[...chips.children].forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');box.textContent=mats[k]};chips.appendChild(c)});
-box.textContent=mats[Object.keys(mats)[0]];
+/* ---------- Calculadora ---------- */
+const itemsEl=document.getElementById('items');
+catalog.forEach(c=>{const l=document.createElement('label');l.className='item';
+ l.innerHTML='<input type="checkbox" id="c-'+c.id+'"><span>'+c.n+'<small>'+eur(c.min)+' – '+eur(c.max)+'</small></span>';
+ l.querySelector('input').onchange=calc;itemsEl.appendChild(l)});
+function calc(){const s=catalog.filter(c=>document.getElementById('c-'+c.id).checked);
+ const mn=s.reduce((a,c)=>a+c.min,0),mx=s.reduce((a,c)=>a+c.max,0);
+ document.getElementById('total').textContent=s.length?eur(mn)+' – '+eur(mx):'0 €';
+ document.getElementById('count').textContent=s.length?(s.length===1?'1 adaptación seleccionada.':s.length+' adaptaciones seleccionadas.'):'Ninguna adaptación seleccionada.';
+ document.getElementById('sel').innerHTML=s.map(c=>'<li>'+c.n+'</li>').join('');}
+['ducha','barras','asiento'].forEach(id=>document.getElementById('c-'+id).checked=true);calc();
 
-const nodes=[...document.querySelectorAll('.node')];let n=0;
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  setInterval(()=>{n=(n+1)%nodes.length;nodes.forEach((e,i)=>e.classList.toggle('on',i<=n))},1400);
-}
-
+/* ---------- Formulario ---------- */
 const form=document.getElementById('form'),res=document.getElementById('result'),copy=document.getElementById('copy');
-try{const s=JSON.parse(localStorage.getItem('aci-solicitud')||'{}');for(const k in s){if(form.elements[k])form.elements[k].value=s[k]}}catch(e){}
-form.addEventListener('submit',ev=>{
-  ev.preventDefault();
-  const d=Object.fromEntries(new FormData(form));
-  if(!d.nombre.trim()||!d.contacto.trim()){res.hidden=false;res.textContent='Indique su nombre o entidad y un medio de contacto para preparar la solicitud.';copy.hidden=true;return}
-  try{localStorage.setItem('aci-solicitud',JSON.stringify(d))}catch(e){}
-  res.hidden=false;copy.hidden=false;
-  res.textContent=`Solicitud de propuesta\nNombre o entidad: ${d.nombre}\nContacto: ${d.contacto}\nIsla: ${d.isla}\nTipo: ${d.tipo}\nSector: ${d.sector}\nPlazo: ${d.plazo}\nDescripción: ${d.desc||'-'}`;
-});
-copy.addEventListener('click',()=>{
-  navigator.clipboard.writeText(res.textContent).then(()=>{copy.textContent='Solicitud copiada'}).catch(()=>{const r=document.createRange();r.selectNodeContents(res);const s=getSelection();s.removeAllRanges();s.addRange(r);copy.textContent='Texto seleccionado: cópielo con Ctrl+C'});
-});
+form.addEventListener('submit',ev=>{ev.preventDefault();const d=Object.fromEntries(new FormData(form));
+ if(!d.nombre.trim()||!d.telefono.trim()){res.hidden=false;copy.hidden=true;res.textContent='Indique su nombre y un teléfono de contacto para preparar la solicitud.';return}
+ const sel=catalog.filter(c=>document.getElementById('c-'+c.id).checked).map(c=>c.n).join(', ')||'-';
+ res.hidden=false;copy.hidden=false;
+ res.textContent=`Solicitud de valoración gratuita\nNombre: ${d.nombre}\nTeléfono: ${d.telefono}\nMunicipio: ${d.municipio||'-'}\nPara: ${d.quien}\nLlamar: ${d.hora}\nResultado del test: ${document.getElementById('level').textContent}\nAdaptaciones de interés: ${sel}\nComentarios: ${d.nota||'-'}`;});
+copy.addEventListener('click',()=>{navigator.clipboard.writeText(res.textContent).then(()=>copy.textContent='Solicitud copiada').catch(()=>{const r=document.createRange();r.selectNodeContents(res);const s=getSelection();s.removeAllRanges();s.addRange(r);copy.textContent='Texto seleccionado: cópielo con Ctrl+C'})});
 </script>
 </body>
 </html>
